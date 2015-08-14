@@ -9,10 +9,13 @@
     <style type="text/css">
 
     .main {
-        text-align: center;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .center {
+        text-align: center;
     }
 
     .bold {
@@ -22,7 +25,7 @@
     </style>
 </head>
 <body>
-    <div class="main">
+    <div class="main center">
         <h1 class="bold">Reservation Form</h1>
         <p>Welcome to our online ski & snowboard rental reservation system.
             <ul>
@@ -84,7 +87,7 @@
             <button type="button" onclick="proceed1();">Next Step --></button>
     </div> <!-- end step 1 -->
         <!-- Add Dynamic Group Name, Email, Pick up, Return, Total Renters -->
-        <div id="step2" style="display: none;">
+        <div class="center" id="step2" style="display: none;">
             <h3>Step 2 - Renter Information</h3>
             <table>
                 <tr>
@@ -180,12 +183,12 @@
             //loop through number of renters and generate table rows
             for (var i = 1; i <= numberRenting; i++) {
                 //we'll separate renter rows with titles
-                var trTitle = document.createElement('tr');
+                var trTitle = document.createElement("tr");
 
                 //create 1 <td> for Renter #_
                 var tdTitle = document.createElement("td");
                 tdTitle.colspan = "7";
-                tdTitleText = document.createTextNode("Renter #" + i.toString());
+                var tdTitleText = document.createTextNode("Renter #" + i.toString());
                 tdTitle.appendChild(tdTitleText);
 
                 //add tdTitle to row
@@ -193,6 +196,181 @@
 
                 //add trTitle to table body
                 tableBody.appendChild(trTitle);
+
+                //now we'll add the input information
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
+                var td4 = document.createElement("td");
+                var td5 = document.createElement("td");
+                var td6 = document.createElement("td");
+                var td7 = document.createElement("td");
+                
+                //set up input fields
+                var _name = document.createElement("input");
+                _name.type = "text";
+                _name.id = "name" + i.toString();
+                _name.value = "Name";
+
+                var _age = document.createElement("input");
+                _age.type = "text";
+                _age.id = "age" + i.toString();
+                _age.value = "Age";
+
+                var _height = document.createElement("select");
+                _height.id = "height" + i.toString();
+                
+                //create height options
+                var defaultH = document.createElement("option");
+                defaultH.value = "defaultH";
+                defaultH.innerHTML = "Height";
+
+                var h0 = document.createElement("option");
+                h0.value = "0";
+                h0.innerHTML = "< 4' 10\"";
+
+                var h1 = document.createElement("option");
+                h1.value = "1";
+                h1.innerHTML = "4' 11\" - 5' 1\"";
+
+                var h2 = document.createElement("option");
+                h2.value = "2";
+                h2.innerHTML = "5' 2\" - 5' 5\"";
+
+                var h3 = document.createElement("option");
+                h3.value = "3";
+                h3.innerHTML = "5'6\" - 5' 10\"";
+
+                var h4 = document.createElement("option");
+                h4.value = "4";
+                h4.innerHTML = "5'11\" - 6' 4\"";
+
+                var h5 = document.createElement("option");
+                h5.value = "4";
+                h5.innerHTML = "> 6' 5\"";
+
+                //add height options to the <select>
+                _height.appendChild(defaultH);
+                _height.appendChild(h0);
+                _height.appendChild(h1);
+                _height.appendChild(h2);
+                _height.appendChild(h3);
+                _height.appendChild(h4);
+                _height.appendChild(h5);
+
+                var _weight = document.createElement("input");
+                _weight.type = "text";
+                _weight.id = "weight" + i.toString();
+                _weight.value = "Weight";
+
+                var _shoe = document.createElement("input");
+                _shoe.type = "text";
+                _shoe.id = "shoe" + i.toString();
+                _shoe.value = "Shoe Size";
+
+                var _skierType = document.createElement("select");
+                _skierType.id = "skierType" + i.toString();
+
+                //create skier options
+                var defaultT = document.createElement("option");
+                defaultT.value = "defaultT";
+                defaultT.innerHTML = "Skier Type";
+
+                var type1 = document.createElement("option");
+                type1.value = "type1";
+                type1.innerHTML = "Type 1";
+
+                var type2 = document.createElement("option");
+                type2.value = "type2";
+                type2.innerHTML = "Type 2";
+
+                var type3 = document.createElement("option");
+                type3.value = "type3";
+                type3.innerHTML = "Type 3";
+
+                //add skier options to <select>
+                _skierType.appendChild(defaultT);
+                _skierType.appendChild(type1);
+                _skierType.appendChild(type2);
+                _skierType.appendChild(type3);
+
+                var _packageType = document.createElement("select");
+                _packageType.id = "packageType" + i.toString();
+
+                //create package options
+                var defaultP = document.createElement("option");
+                defaultP.value = "defaultP";
+                defaultP.innerHTML = "Package Type";
+
+                var package0 = document.createElement("option");
+                package0.value = "0";
+                package0.innerHTML = "Regular Sport Ski Package";
+
+                var package1 = document.createElement("option");
+                package1.value = "1";
+                package1.innerHTML = "Sport Ski Package";
+
+                var package2 = document.createElement("option");
+                package2.value = "2";
+                package2.innerHTML = "Demo Ski Package";
+
+                var package3 = document.createElement("option");
+                package3.value = "3";
+                package3.innerHTML = "Children's Ski Package";
+
+                var package4 = document.createElement("option");
+                package4.value = "4";
+                package4.innerHTML = "Snowboard Package";
+
+                var package5 = document.createElement("option");
+                package5.value = "5";
+                package5.innerHTML = "Children's Snowboard Package";
+
+                var package6 = document.createElement("option");
+                package6.value = "6";
+                package6.innerHTML = "Demo Snowboard Package";
+
+                var package7 = document.createElement("option");
+                package7.value = "7";
+                package7.innerHTML = "Snowblades with Boots";
+
+                var package8 = document.createElement("option");
+                package8.value = "8";
+                package8.innerHTML = "Snowshoes";
+
+                //add the package options to <select>
+                _packageType.appendChild(defaultP);
+                _packageType.appendChild(package0);
+                _packageType.appendChild(package1);
+                _packageType.appendChild(package2);
+                _packageType.appendChild(package3);
+                _packageType.appendChild(package4);
+                _packageType.appendChild(package5);
+                _packageType.appendChild(package6);
+                _packageType.appendChild(package7);
+                _packageType.appendChild(package8);
+
+                //add the inputs to the <td>s
+                td1.appendChild(_name);
+                td2.appendChild(_age);
+                td3.appendChild(_height);
+                td4.appendChild(_weight);
+                td5.appendChild(_shoe);
+                td6.appendChild(_skierType);
+                td7.appendChild(_packageType);
+
+                //add the <td>s to the <tr>
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tr.appendChild(td6);
+                tr.appendChild(td7);
+
+                //add the row to the table
+                tableBody.appendChild(tr);
             }
 
             //add the table body to the table
