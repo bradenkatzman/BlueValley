@@ -22,6 +22,12 @@
         font-weight: bold;
     }
 
+    #policy {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+    }
+
     </style>
 </head>
 <body>
@@ -99,9 +105,22 @@
                 </tr>
             </table>
             <form id="form2"></form>
+
+            <button type="button" onclick="proceed2();">Next Step --></button>
         </div>
 
-
+        <!-- policy div fixed at bottom of page -->
+        <div id="policy">
+            <p><span class="bold">NOTE:</span> For groups of 10 or more please call for availability (970) 468-0400</p>
+            <p><span class="bold">Cancelation Policy:</span> We have a 72 hour cancelation policy. IF you are unable to
+                fulfill your reservation commitment, please let us know at least 72 hours before you are due to arrive
+                 and we will refund your online reservation deposit</p>
+            <p><span class="bold">When You Arrive:</span> When you are ready to get fitted and pick up your gear you can
+                 stop by after 3PM the dat before your reservation starts and you will not be charged. This is actually
+                 preferable because you will be all set to catch the first chair in the morning and enjoy a full day on
+                 the hill. When returning your gear, please do so by our closing time the last day of your reservation.
+            </p>
+        </div>
 
     </div> <!-- end main -->
 
@@ -115,6 +134,7 @@
         var emailAddress;
         var pickUpDate;
         var returnDate;
+        var renterInfo = []; //we'll fill this with object literals of renter info
 
         function proceed1() {
 
@@ -381,6 +401,91 @@
             //add table to form
             form.appendChild(table);
         }
+
+        function proceed2() {
+            //first we'll validate the form data
+            for (var i = 1; i <= numberRenting; i++) {
+                //check renter name
+                var name_ = document.getElementById("name" + i.toString()).value;
+                if(name_ == "Name" || name_ == "") {
+                    alert("Please enter a name for Renter #" + i.toString());
+                    return;
+                }
+
+                var age_ = document.getElementById("age" + i.toString()).value;
+                if (isNaN(parseInt(age_)) == true) {
+                    alert("Please enter a NUMBER age for Renter #" + i.toString());
+                    return;
+                }
+
+                //retrieve selected option text
+                var selectedIndexH = document.getElementById("height" + i.toString()).selectedIndex;
+                var optionsH = document.getElementById("height" + i.toString()).options;
+                var height_ = optionsH[selectedIndexH].text;
+                if (height_ == "Height") {
+                    alert("Please select a height for Renter #" + i.toString());
+                    return;
+                }
+
+                var weight_ = document.getElementById("weight" + i.toString()).value;
+                if (isNaN(parseInt(weight_)) == true) {
+                    alert("Please enter a NUMBER weight for Renter #" + i.toString()).value;
+                    return;
+                }
+
+                var shoeSize_ = document.getElementById("shoe" + i.toString()).value;
+                if (isNaN(parseInt(shoeSize_)) == true) {
+                    alert("Please enter a NUMBER shoe size for Renter #" + i.toString());
+                    return;
+                }
+
+                var selectedIndexST = document.getElementById("skierType" + i.toString()).selectedIndex;
+                var optionsST = document.getElementById("skierType" + i.toString()).options;
+                var skierType_ = optionsST[selectedIndexST].text;
+                if (skierType_ == "Skier Type") {
+                    alert("Please select a Skier Type for Renter #" + i.toString());
+                    return;
+                }
+
+                //retrieve selected option text
+                var selectedIndexH = document.getElementById("height" + i.toString()).selectedIndex;
+                var optionsH = document.getElementById("height" + i.toString()).options;
+                var height_ = optionsH[selectedIndexH].text;
+                if (height_ == "Height") {
+                    alert("Please select a height for Renter #" + i.toString());
+                    return;
+                }
+
+                var selectedIndexPT = document.getElementById("packageType" + i.toString()).selectedIndex;
+                var optionsPT = document.getElementById("packageType" + i.toString()).options;
+                var packageType_ = optionsPT[selectedIndexPT].text;
+                if (packageType_ == "Package Type") {
+                    alert("Please select a Package Type for Renter #" + i.toString());
+                    return;
+                }
+
+                //if this is reached, all information has been validated
+
+                //construct object literal to pass to renterInfo array
+                var renter = {
+                    "name": name_,
+                    "age": age_,
+                    "height": height_,
+                    "weight": weight_,
+                    "shoeSize": shoeSize_,
+                    "skierType": skierType_,
+                    "packageType": packageType_
+                };
+
+                //add renter to renterInfo array
+                renterInfo[i - 1] = renter;
+            }
+        }
     </script>
 </body>
 </html>
+
+<!-- 
+    Windows/System32/inetsrv
+    appcmd.exe start apppool BlueValley
+-->
