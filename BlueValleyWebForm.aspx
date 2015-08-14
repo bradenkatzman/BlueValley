@@ -86,7 +86,6 @@
     </form>
             <button type="button" onclick="proceed1();">Next Step --></button>
     </div> <!-- end step 1 -->
-        <!-- Add Dynamic Group Name, Email, Pick up, Return, Total Renters -->
         <div class="center" id="step2" style="display: none;">
             <h3>Step 2 - Renter Information</h3>
             <table>
@@ -166,6 +165,9 @@
         function setupStep2() {
             //fill in step 1 info before displaying div
             document.getElementById("groupName2").innerHTML = groupName;
+            document.getElementById("pickUpDate2").innerHTML = pickUpDate;
+            document.getElementById("emailAddress2").innerHTML = emailAddress;
+            document.getElementById("returnDate2").innerHTML = returnDate;
 
             //display step 2 form
             document.getElementById("step2").style.display = "";
