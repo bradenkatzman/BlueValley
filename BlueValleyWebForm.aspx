@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Blue Valley Customer Enrollment</title>
+    <title>Blue Valley Reservation Form</title>
 
     <style type="text/css">
 
@@ -89,11 +89,11 @@
                 <td><input type="email" id="email" name="email" required="true" /></td>
             </tr>
             <tr>
-                <td>Pick Up Date: (XX/XX/XXXX) </td>
+                <td>Pick Up Date: (XX/XX/201X) </td>
                 <td><input type="text" id="pickUpDate" name="pickUpDate" required="true" /></td>
             </tr>
             <tr>
-                <td>Return Date: (XX/XX/XXXX) </td>
+                <td>Return Date: (XX/XX/201X) </td>
                 <td><input type="text" id="returnDate" name="returnDate" required="true" /></td>
             </tr>
         </table>
@@ -209,12 +209,41 @@
             }
 
             //check the dates to make sure they are valid
-            if(isNaN(parseInt(_pickUpDate.substring(0,2))) == true ||
-               isNaN(parseInt(_pickUpDate.substring(3,5))) == true ||
+            if (isNaN(parseInt(_pickUpDate.substring(0, 2))) == true ||
+               isNaN(parseInt(_pickUpDate.substring(3, 5))) == true ||
                isNaN(parseInt(_pickUpDate.substring(6))) == true ||
-                _pickUpDate.substring(2,3) != "/" ||
-                _pickUpDate.substring(5, 6) != "/") {
-                alert("Please enter a date in the format XX/XX/XXXX");
+                _pickUpDate.substring(2, 3) != "/" ||
+                _pickUpDate.substring(5, 6) != "/" ||
+                _pickUpDate.substring(6, 9) != "201") {
+                alert("Please enter a 'Pick Up Date' in the format XX/XX/201X");
+                return;
+            }
+
+            //check pick up date month and day
+            if(parseInt(_pickUpDate.substring(0,2)) > 12 || 
+                parseInt(_pickUpDate.substring(0,2)) < 1 ||
+                parseInt(_pickUpDate.substring(3, 5)) > 31 ||
+                parseInt(_pickUpDate.substring(3, 5)) < 1) {
+                alert("Please enter a valid 'Pick Up Date'");
+            }
+
+            //check return date month and day
+            if (parseInt(_returnDate.substring(0, 2)) > 12 ||
+                parseInt(_returnDate.substring(0, 2)) < 1 ||
+                parseInt(_returnDate.substring(3, 5)) > 31 ||
+                parseInt(_returnDate.substring(3, 5)) < 1) {
+                alert("Please enter a valid 'Return Date'");
+            }
+
+            //check dates in relation to each other
+
+            if (isNaN(parseInt(_returnDate.substring(0, 2))) == true ||
+               isNaN(parseInt(_returnDate.substring(3, 5))) == true ||
+               isNaN(parseInt(_returnDate.substring(6))) == true ||
+                _returnDate.substring(2, 3) != "/" ||
+                _returnDate.substring(5, 6) != "/" ||
+                _returnDate.substring(6,9) != "201") {
+                alert("Please enter a 'Return Date' in the format XX/XX/201X");
                 return;
             }
 
