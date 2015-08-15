@@ -8,10 +8,17 @@
 
     <style type="text/css">
 
+    body {
+        background-color: #B2E0FF;
+    }
+
     .main {
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+        background-color: #FFFFFF;
+        border: 2px solid black;
+        box-shadow: 4px 4px 4px black;
     }
 
     .center {
@@ -26,6 +33,8 @@
         width: 100%;
         position: relative;
         bottom: 0;
+        margin-top: 25px;
+        border: 1px solid black;
     }
 
     </style>
@@ -80,12 +89,12 @@
                 <td><input type="email" id="email" name="email" required="true" /></td>
             </tr>
             <tr>
-                <td>Pick Up Date: </td>
-                <td><input type="date" id="pickUpDate" name="pickUpDate" required="true" /></td>
+                <td>Pick Up Date: (XX/XX/XXXX) </td>
+                <td><input type="text" id="pickUpDate" name="pickUpDate" required="true" /></td>
             </tr>
             <tr>
-                <td>Return Date: </td>
-                <td><input type="date" id="returnDate" name="returnDate" required="true" /></td>
+                <td>Return Date: (XX/XX/XXXX) </td>
+                <td><input type="text" id="returnDate" name="returnDate" required="true" /></td>
             </tr>
         </table>
     </div>
@@ -107,6 +116,34 @@
             <form id="form2"></form>
 
             <button type="button" onclick="proceed2();">Next Step --></button>
+        </div>
+
+        <div class="center" id="step3" style="display: none;">
+            <h3>Step 3 - Rental Confirmation</h3>
+            <p>If the information below is all correct, click the "<span class="bold">Confirm and Pay</span>" button at the bottom.</p>
+            <p>If something is incorrect, click "<span class="bold">Reset</span>" to clear the form.</p>
+
+             <table>
+                <tr>
+                    <td><span class="bold">Group Name: </span><span id="groupName3"></span></td>
+                    <td><span class="bold">Pick Up Date: </span><span id="pickUpDate3"></span></td>
+                </tr>
+                <tr>
+                    <td><span class="bold">Email Address: </span><span id="emailAddress3"></span></td>
+                    <td><span class="bold">Return Date: </span><span id="returnDate3"></span></td>
+                </tr>
+                 <tr>
+                     <td><span class="bold">Phone Number: </span><span id="phoneNumber3"></span></td>
+                     <td><span class="bold">Total Renters: </span><span id="totalRenters3"></span></td>
+                 </tr>
+            </table>
+
+            <form id="form3"></form>
+
+            <p><span class="bold">Reservation Deposit TOTAL = </span><span id="depositTotal"></span></p>
+
+            <button type="button" onclick="confirm();">Confirm and Pay >></button>
+            <button type="button" onclick="reset();">Reset Form</button>
         </div>
 
         <!-- policy div fixed at bottom of page -->
@@ -171,6 +208,16 @@
                 return;
             }
 
+            //check the dates to make sure they are valid
+            if(isNaN(parseInt(_pickUpDate.substring(0,2))) == true ||
+               isNaN(parseInt(_pickUpDate.substring(3,5))) == true ||
+               isNaN(parseInt(_pickUpDate.substring(6))) == true ||
+                _pickUpDate.substring(2,3) != "/" ||
+                _pickUpDate.substring(5, 6) != "/") {
+                alert("Please enter a date in the format XX/XX/XXXX");
+                return;
+            }
+
             //let's assign the form values to our global variables
             numberRenting = _numberRenting;
             groupName = _groupName;
@@ -188,9 +235,6 @@
             document.getElementById("pickUpDate2").innerHTML = pickUpDate;
             document.getElementById("emailAddress2").innerHTML = emailAddress;
             document.getElementById("returnDate2").innerHTML = returnDate;
-
-            //display step 2 form
-            document.getElementById("step2").style.display = "";
 
             //access form to generate dynamic table
             var form = document.getElementById("form2");
@@ -400,6 +444,9 @@
 
             //add table to form
             form.appendChild(table);
+
+            //display step 2 form
+            document.getElementById("step2").style.display = "";
         }
 
         function proceed2() {
@@ -480,6 +527,72 @@
                 //add renter to renterInfo array
                 renterInfo[i - 1] = renter;
             }
+
+            setupStep3();
+        }
+
+        function setupStep3() {
+            //fill in step 1 info before displaying div
+            document.getElementById("groupName3").innerHTML = groupName;
+            document.getElementById("pickUpDate3").innerHTML = pickUpDate;
+            document.getElementById("emailAddress3").innerHTML = emailAddress;
+            document.getElementById("returnDate3").innerHTML = returnDate;
+            document.getElementById("phoneNumber3").innerHTML = phoneNumber;
+            document.getElementById("totalRenters3").innerHTML = numberRenting;
+
+            //access form to generate dynamic table
+            var form = document.getElementById("form3");
+
+            //create new table element to go inside form
+            var table = document.createElement("table");
+            table.style.width = "100%"; //set the table to full width
+
+            //create table body to append rows
+            var tableBody = document.createElement("tbody");
+
+            for (var i = 0; i < renterInfo.length; i++) {
+                //create <tr>
+                var tr = document.createElement("tr");
+
+                //create <td>'s
+                var td1 = document.createElement("td");
+                var td1Text = document.createTextNode(renterInfo[i].name);
+                
+                var td2 = document.createElement("td");
+                var td2Text = document.createTextNode(renterInfo[i].packageType);
+
+                var td3 = document.createElement("td");
+                var td3Text = document.createTextNode("Deposit: $10");
+
+                //append text to <td>'s
+                td1.appendChild(td1Text);
+                td2.appendChild(td2Text);
+                td3.appendChild(td3Text);
+
+                //append <td>'s to <tr>
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+
+                //append <tr> to table body
+                tableBody.appendChild(tr);
+            }
+
+            //append table body to table
+            table.appendChild(tableBody);
+
+            //append table to form
+            form.appendChild(table);
+
+            //set deposit total
+            document.getElementById("depositTotal").innerHTML = "$" + (parseInt(numberRenting) * 10).toString() + ".00"
+
+            //make step3 visible
+            document.getElementById("step3").style.display = "";
+        }
+
+        function reset() {
+            alert("reset");
         }
     </script>
 </body>
