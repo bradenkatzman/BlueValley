@@ -90,11 +90,11 @@
             </tr>
             <tr>
                 <td>Pick Up Date: (XX/XX/201X) </td>
-                <td><input type="text" id="pickUpDate" name="pickUpDate" required="true" /></td>
+                <td><input type="date" id="pickUpDate" name="pickUpDate" required="true" /></td>
             </tr>
             <tr>
                 <td>Return Date: (XX/XX/201X) </td>
-                <td><input type="text" id="returnDate" name="returnDate" required="true" /></td>
+                <td><input type="date" id="returnDate" name="returnDate" required="true" /></td>
             </tr>
         </table>
     </div>
@@ -165,7 +165,6 @@
     <script src="BlueValleyFormValidate.js"></script>
 </body>
 </html>
-
 <!-- 
     Windows/System32/inetsrv
     appcmd.exe start apppool BlueValley

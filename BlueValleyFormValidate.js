@@ -477,6 +477,20 @@ function setupStep3() {
     document.getElementById("step3").style.display = "";
 }
 
+function confirm() {
+    //now we'll build our JSON object to push to Journey
+    var reservationConfirm = {
+        "numberRenting": numberRenting,
+        "groupName": groupName,
+        "phoneNumber": phoneNumber,
+        "emailAddress": emailAddress,
+        "pickUpDate": pickUpDate,
+        "returnDate": returnDate,
+        "renterInfo": renterInfo //check if this is legal
+    };
+}
+
 function reset() {
-    alert("reset");
+    //reload page since elements were dynamically generated
+    document.location = "http://bluevalley/BlueValleyWebForm";
 }
