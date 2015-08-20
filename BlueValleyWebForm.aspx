@@ -1,4 +1,4 @@
-﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeFile="BlueValleyWebForm.aspx.cs" Inherits="Default2" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeFile="BlueValleyWebForm.aspx.cs" Inherits="BlueValley" %>
 
 <!DOCTYPE html>
 
@@ -142,8 +142,11 @@
 
             <p><span class="bold">Reservation Deposit TOTAL = </span><span id="depositTotal"></span></p>
 
-            <button type="button" onclick="confirm();">Confirm and Pay >></button>
+            <asp:Button type="button" OnClientClick="confirm();" onclick="sendJSON">Confirm and Pay >></>
             <button type="button" onclick="reset();">Reset Form</button>
+
+            <!-- this is our hidden variable that will hold the JSON object to access in aspx.cs -->
+            <input id="hiddenJSON" type="hidden" runat="server" />
         </div>
 
         <!-- policy div fixed at bottom of page -->

@@ -488,6 +488,9 @@ function confirm() {
         "returnDate": returnDate,
         "renterInfo": renterInfo //check if this is legal
     };
+
+    //set the JSON object to hidden input value to access in aspx.cs file
+    document.getElementById("hiddenJSON").value = reservationConfirm;
 }
 
 function reset() {
