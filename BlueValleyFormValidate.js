@@ -490,7 +490,10 @@ function confirm() {
     };
 
     //set the JSON object to hidden input value to access in aspx.cs file
-    document.getElementById("hiddenJSON").value = reservationConfirm;
+    document.getElementById("hiddenJSON").textContent = reservationConfirm;
+
+    //make asp button visible
+    document.getElementById("aspButton").style.display = "";
 }
 
 function reset() {

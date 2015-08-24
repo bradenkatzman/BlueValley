@@ -142,11 +142,15 @@
 
             <p><span class="bold">Reservation Deposit TOTAL = </span><span id="depositTotal"></span></p>
 
-            <asp:Button type="button" OnClientClick="confirm();" onclick="sendJSON">Confirm and Pay >></>
+            <button type="button" onclick="confirm();">Confirm</button>
             <button type="button" onclick="reset();">Reset Form</button>
+            
+            <div id="aspButton" style="display: hidden">
+                <asp:Button runat="server" Text="Complete Reservation" OnClick="sendJSON" />
+            </div>
 
             <!-- this is our hidden variable that will hold the JSON object to access in aspx.cs -->
-            <input id="hiddenJSON" type="hidden" runat="server" />
+            <asp:TextBox id="hiddenJSON" runat="server" />
         </div>
 
         <!-- policy div fixed at bottom of page -->
