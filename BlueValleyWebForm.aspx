@@ -42,16 +42,15 @@
 <body>
     <div class="main center">
         <h1 class="bold">Reservation Form</h1>
-        <p>Welcome to our online ski & snowboard rental reservation system.
+        <p>Welcome to our online ski & snowboard rental reservation system.</p>
             <ul>
                 <li>Each reservation requires a <span class="bold">$10</span> deposit per person.</li>
                 <li>Remaining amout due will be paid at time of pick up.</li>
                 <li>Payments are received through <span class="bold">PayPal.com</span>"</li>
             </ul>
-        </p>
         <div id="step1">
             <h3>Step 1 - Online Rental Reservations</h3>
-    <form id="form1" runat="server">
+    <form id="form1">
     <div>
         <table>
             <tr>
@@ -145,12 +144,13 @@
             <button type="button" onclick="confirm();">Confirm</button>
             <button type="button" onclick="reset();">Reset Form</button>
             
-            <div id="aspButton" style="display: hidden">
-                <asp:Button runat="server" Text="Complete Reservation" OnClick="sendJSON" />
+           <div id="aspButton" style="display: hidden">
+                <form runat="server">
+                    <!-- this is our hidden variable that will hold the JSON object to access in aspx.cs -->
+                    <asp:TextBox runat="server" id="hiddenJSON"/>
+                    <asp:Button runat="server" Text="Complete Reservation" OnClick="sendJSON" />
+                </form>       
             </div>
-
-            <!-- this is our hidden variable that will hold the JSON object to access in aspx.cs -->
-            <asp:TextBox id="hiddenJSON" runat="server" />
         </div>
 
         <!-- policy div fixed at bottom of page -->
