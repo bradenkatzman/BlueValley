@@ -143,14 +143,6 @@
 
             <button type="button" onclick="confirm();">Confirm</button>
             <button type="button" onclick="reset();">Reset Form</button>
-            
-           <div id="aspButton" style="display: hidden">
-                <form runat="server">
-                    <!-- this is our hidden variable that will hold the JSON object to access in aspx.cs -->
-                    <asp:TextBox runat="server" id="hiddenJSON"/>
-                    <asp:Button runat="server" Text="Complete Reservation" OnClick="sendJSON" />
-                </form>       
-            </div>
         </div>
 
         <!-- policy div fixed at bottom of page -->
@@ -170,6 +162,9 @@
 
     <!-- validation script -->
     <script src="BlueValleyFormValidate.js"></script>
+
+    <!-- this server side control will store the reservation object -->
+    <asp:HiddenField ID="reservationASP" runat="server" />
 </body>
 </html>
 <!-- 

@@ -13,8 +13,6 @@ public partial class BlueValley : System.Web.UI.Page
     }
 
    protected void sendJSON(object sender, EventArgs e) {
-        string reservation = ((TextBox)FindControl("hiddenJSON")).Text;
-
-        Response.Write(reservation);
+        string reservation = reservationASP.value;
     }
 }
