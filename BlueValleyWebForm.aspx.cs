@@ -12,7 +12,7 @@ public partial class BlueValley : System.Web.UI.Page
          
     }
 
-   protected void sendJSON(object sender, EventArgs e) {
-        string reservation = reservationASP.value;
+   public static string successhandler() {
+        return "The success method was triggered";
     }
 }

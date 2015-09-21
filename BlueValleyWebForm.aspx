@@ -160,11 +160,11 @@
 
     </div> <!-- end main -->
 
+    <!-- jQuery script -->
+    <script type="text/javascript" src="/scripts/jquery-1.10.2.min.js"</script>
+
     <!-- validation script -->
     <script src="BlueValleyFormValidate.js"></script>
-
-    <!-- this server side control will store the reservation object -->
-    <asp:HiddenField ID="reservationASP" runat="server" />
 </body>
 </html>
 <!-- 

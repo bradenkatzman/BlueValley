@@ -489,8 +489,18 @@ function confirm() {
         "renterInfo": renterInfo //check if this is legal
     };
 
-    //set the JSON object to hidden input value to access in aspx.cs file
-    document.getElementById("<%= reservationASP.ClientID %>").value = reservationConfirm;
+    //we'll make an AJAX call to our aspx.cs call to pass the JSON object
+    event.preventDefault();
+    $.ajax
+        ({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(reservationConfirm),
+            datatype: "json",
+            url: "http://bluevalley/BlueValleyWebForm.aspx.cs",
+            success: successhandler,
+            error: errorhandler
+        });
 }
 
 function reset() {
