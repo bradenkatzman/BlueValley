@@ -490,16 +490,21 @@ function confirm() {
     };
 
     //we'll make an AJAX call to our aspx.cs call to pass the JSON object
-    event.preventDefault();
     $.ajax
         ({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(reservationConfirm),
             datatype: "json",
-            url: "http://bluevalley/BlueValleyWebForm.aspx.cs",
-            success: successhandler,
-            error: errorhandler
+            url: "BlueValleyWebForm.aspx/successHandler",
+            success: function (data) {
+                alert("the method was triggered");
+                alert(JSON.stringify(reservationConfirm));
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+                alert(errorThrown);
+            }
         });
 }
 

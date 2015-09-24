@@ -12,7 +12,7 @@ public partial class BlueValley : System.Web.UI.Page
          
     }
 
-   public static string successhandler() {
+   public static string successHandler() {
         return "The success method was triggered";
     }
 }
